@@ -145,16 +145,17 @@
       grid-template-rows: auto auto;
       gap: 32px 40px;
       position: relative;
+      align-items: start;
     }
     .card-center {
       grid-column: 2;
       grid-row: 1 / span 2;
       align-self: center;
     }
-    .card-1 { grid-column: 1; grid-row: 1; }
-    .card-2 { grid-column: 1; grid-row: 2; }
-    .card-3 { grid-column: 3; grid-row: 1; }
-    .card-4 { grid-column: 3; grid-row: 2; }
+    .card-1 { grid-column: 1; grid-row: 1; align-self: start; }
+    .card-2 { grid-column: 1; grid-row: 2; align-self: start; }
+    .card-3 { grid-column: 3; grid-row: 1; align-self: start; }
+    .card-4 { grid-column: 3; grid-row: 2; align-self: start; }
   }
 
   /* Tablet */
@@ -162,6 +163,7 @@
     .mindmap {
       grid-template-columns: 1fr 1fr;
       gap: 24px;
+      align-items: start;
     }
     .card-center {
       grid-column: 1 / -1;
@@ -241,9 +243,12 @@
     background: var(--surface-tint);
     border: 1px solid var(--line);
     color: var(--brand-2);
-    font-weight: 800;
-    font-size: 20px;
     transition: all .3s var(--ease);
+  }
+  .card-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
   }
   .card.is-open .card-icon {
     background: linear-gradient(135deg, var(--brand-1), var(--brand-3));
@@ -327,7 +332,7 @@
   .card-panel li {
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: center;
     padding: 12px 14px;
     background: var(--surface-tint);
     border-radius: var(--radius-sm);
@@ -341,14 +346,22 @@
     background: #fff3e7;
     transform: translateX(3px);
   }
-  .card-panel li::before {
-    content: '';
+  .list-icon {
     flex-shrink: 0;
-    width: 8px;
-    height: 8px;
-    margin-top: 7px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--brand-1), var(--brand-3));
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--brand-2);
+  }
+  .list-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
   }
 
   /* ----------- CENTER CARD ----------- */
@@ -399,6 +412,24 @@
     border-radius: 999px;
     margin-bottom: 20px;
     backdrop-filter: blur(4px);
+  }
+  .center-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px);
+  }
+  .center-icon svg {
+    width: 34px;
+    height: 34px;
+    color: #fff;
+    stroke-width: 2;
   }
   .card-center h2 {
     margin: 0 0 18px;
@@ -501,6 +532,7 @@
 
     <!-- CENTER -->
     <article class="card-center" aria-labelledby="center-title">
+      <div class="center-icon" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
       <span class="center-badge">Núcleo</span>
       <h2 id="center-title">Setor Acadêmico</h2>
       <p>Integramos conhecimento, criatividade e propósito para transformar ideias em materiais que educam, conectam e geram impacto.</p>
@@ -513,9 +545,9 @@
     <article class="card card-1" data-card>
       <div class="accent-bar" aria-hidden="true"></div>
       <button class="card-toggle" type="button" aria-expanded="false" aria-controls="panel-1" id="toggle-1">
-        <span class="card-icon" aria-hidden="true">01</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="book-open-text"></i></span>
         <span class="card-heading">
-          <h3>Produção</h3>
+          <h3>1. Produção</h3>
           <p>Leitura, Construção, Revisão e Design</p>
         </span>
         <span class="card-chevron" aria-hidden="true">
@@ -525,11 +557,11 @@
       <div class="card-panel" id="panel-1" role="region" aria-labelledby="toggle-1">
         <div class="card-panel-inner">
           <ul>
-            <li>Leitura crítica de conteúdos</li>
-            <li>Construção de materiais didáticos</li>
-            <li>Revisão textual e estrutural</li>
-            <li>Design visual e organização do material</li>
-            <li>Padronização de identidade acadêmica</li>
+            <li><span class="list-icon"><i data-lucide="book-open"></i></span>Leitura crítica de conteúdos</li>
+            <li><span class="list-icon"><i data-lucide="file-text"></i></span>Construção de materiais didáticos</li>
+            <li><span class="list-icon"><i data-lucide="search-check"></i></span>Revisão textual e estrutural</li>
+            <li><span class="list-icon"><i data-lucide="palette"></i></span>Design visual e organização do material</li>
+            <li><span class="list-icon"><i data-lucide="shield-check"></i></span>Padronização de identidade acadêmica</li>
           </ul>
         </div>
       </div>
@@ -539,9 +571,9 @@
     <article class="card card-2" data-card>
       <div class="accent-bar" aria-hidden="true"></div>
       <button class="card-toggle" type="button" aria-expanded="false" aria-controls="panel-2" id="toggle-2">
-        <span class="card-icon" aria-hidden="true">02</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="languages"></i></span>
         <span class="card-heading">
-          <h3>Tradução</h3>
+          <h3>2. Tradução</h3>
           <p>Tradução direta para o inglês</p>
         </span>
         <span class="card-chevron" aria-hidden="true">
@@ -551,11 +583,11 @@
       <div class="card-panel" id="panel-2" role="region" aria-labelledby="toggle-2">
         <div class="card-panel-inner">
           <ul>
-            <li>Tradução de materiais acadêmicos</li>
-            <li>Adaptação linguística (PT → EN)</li>
-            <li>Padronização de termos técnicos</li>
-            <li>Revisão bilíngue</li>
-            <li>Adequação cultural do conteúdo</li>
+            <li><span class="list-icon"><i data-lucide="file-text"></i></span>Tradução de materiais acadêmicos</li>
+            <li><span class="list-icon"><i data-lucide="languages"></i></span>Adaptação linguística (PT → EN)</li>
+            <li><span class="list-icon"><i data-lucide="badge-check"></i></span>Padronização de termos técnicos</li>
+            <li><span class="list-icon"><i data-lucide="scan-text"></i></span>Revisão bilíngue</li>
+            <li><span class="list-icon"><i data-lucide="globe"></i></span>Adequação cultural do conteúdo</li>
           </ul>
         </div>
       </div>
@@ -565,9 +597,9 @@
     <article class="card card-3" data-card>
       <div class="accent-bar" aria-hidden="true"></div>
       <button class="card-toggle" type="button" aria-expanded="false" aria-controls="panel-3" id="toggle-3">
-        <span class="card-icon" aria-hidden="true">03</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="monitor-play"></i></span>
         <span class="card-heading">
-          <h3>Plataformas / Cursos</h3>
+          <h3>3. Plataformas / Cursos</h3>
           <p>Produção, edição e lançamento</p>
         </span>
         <span class="card-chevron" aria-hidden="true">
@@ -577,12 +609,12 @@
       <div class="card-panel" id="panel-3" role="region" aria-labelledby="toggle-3">
         <div class="card-panel-inner">
           <ul>
-            <li>Produção de conteúdos digitais</li>
-            <li>Edição de vídeos e materiais</li>
-            <li>Estruturação de cursos online</li>
-            <li>Organização em plataformas (módulos, trilhas)</li>
-            <li>Lançamento e publicação</li>
-            <li>Atualização de conteúdos</li>
+            <li><span class="list-icon"><i data-lucide="monitor"></i></span>Produção de conteúdos digitais</li>
+            <li><span class="list-icon"><i data-lucide="film"></i></span>Edição de vídeos e materiais</li>
+            <li><span class="list-icon"><i data-lucide="layers"></i></span>Estruturação de cursos online</li>
+            <li><span class="list-icon"><i data-lucide="list-tree"></i></span>Organização em plataformas (módulos, trilhas)</li>
+            <li><span class="list-icon"><i data-lucide="rocket"></i></span>Lançamento e publicação</li>
+            <li><span class="list-icon"><i data-lucide="refresh-cw"></i></span>Atualização de conteúdos</li>
           </ul>
         </div>
       </div>
@@ -592,9 +624,9 @@
     <article class="card card-4" data-card>
       <div class="accent-bar" aria-hidden="true"></div>
       <button class="card-toggle" type="button" aria-expanded="false" aria-controls="panel-4" id="toggle-4">
-        <span class="card-icon" aria-hidden="true">04</span>
+        <span class="card-icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
         <span class="card-heading">
-          <h3>Pedagógico</h3>
+          <h3>4. Pedagógico</h3>
           <p>Foco infanto-juvenil (Mahilah&amp;Co)</p>
         </span>
         <span class="card-chevron" aria-hidden="true">
@@ -604,9 +636,9 @@
       <div class="card-panel" id="panel-4" role="region" aria-labelledby="toggle-4">
         <div class="card-panel-inner">
           <ul>
-            <li>Desenvolvimento de materiais educativos</li>
-            <li>Adaptação para público infanto-juvenil</li>
-            <li>Criação de atividades didáticas</li>
+            <li><span class="list-icon"><i data-lucide="lightbulb"></i></span>Desenvolvimento de materiais educativos</li>
+            <li><span class="list-icon"><i data-lucide="smile"></i></span>Adaptação para público infanto-juvenil</li>
+            <li><span class="list-icon"><i data-lucide="pencil-ruler"></i></span>Criação de atividades didáticas</li>
           </ul>
         </div>
       </div>
@@ -619,9 +651,31 @@
   <p>© <span id="year"></span> <strong>Setor Acadêmico</strong> — Mapa mental interativo.</p>
 </footer>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 <script>
   (function () {
     'use strict';
+
+    // Initialize Lucide icons once the library is ready
+    function initIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons({
+          attrs: { 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }
+        });
+        // Recalculate any open panel heights after SVGs are injected
+        document.querySelectorAll('[data-card].is-open .card-panel').forEach(function (p) {
+          p.style.maxHeight = p.scrollHeight + 'px';
+        });
+      } else {
+        // Library may still be loading (defer) — retry shortly
+        setTimeout(initIcons, 40);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initIcons);
+    } else {
+      initIcons();
+    }
 
     // Year in footer
     var yearEl = document.getElementById('year');
